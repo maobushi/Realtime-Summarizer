@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 
 interface SummaryProps {
   text: string;
-  lastText: string;
+  lastText: string;  // 1. ここにlastTextを追加
 }
 
-const Summary: React.FC<SummaryProps> = ({ text }) => {
+// 2. lastTextを引数として受け取るように変更
+const Summary: React.FC<SummaryProps> = ({ text, lastText }) => { 
   const [summaries, setSummaries] = useState<string[]>([]);
 
   const fetchSummary = async (inputText: string) => {
@@ -25,10 +26,9 @@ const Summary: React.FC<SummaryProps> = ({ text }) => {
   };
 
   useEffect(() => {
-    // textが20の倍数になるたびに要約を更新
     if (text.length && text.length % 20 === 0) {
-      const startIndex = text.length - 40 > 0 ? text.length - 40 : 0; // 最後の40文字のみを取得
-      const inputText = text.slice(startIndex, startIndex + 20); // 20文字ごとに取得
+      const startIndex = text.length - 40 > 0 ? text.length - 40 : 0;
+      const inputText = text.slice(startIndex, startIndex + 20);
 
       const fakeSummary = `偽装要約: ${inputText}...`; 
       setSummaries((prev) => [...prev, fakeSummary]);
