@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 interface SummaryProps {
   text: string;
+  lastText: string;
 }
 
 const Summary: React.FC<SummaryProps> = ({ text }) => {
