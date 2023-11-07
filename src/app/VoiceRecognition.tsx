@@ -1,5 +1,6 @@
-"use client"
-import { useState, useRef, useEffect } from 'react';
+"use client";
+
+import React, { useState, useRef, useEffect } from 'react';
 
 interface VoiceRecognitionProps {
   onTextChange: (text: string) => void;
@@ -21,35 +22,32 @@ const VoiceRecognition: React.FC<VoiceRecognitionProps> = ({ onTextChange }) => 
       return;
     }
 
-    if (!recognitionRef.current) {
-      const recognition = new window.webkitSpeechRecognition();
-      recognition.lang = 'ja-JP';
-      recognition.interimResults = true;
-      recognition.continuous = true;
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = 'ja-JP';
+    recognition.interimResults = true;
+    recognition.continuous = true;
 
-      recognition.onresult = (event) => {
-        let newInterimTranscript = '';
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcript = event.results[i][0].transcript;
-          if (event.results[i].isFinal) {
-            setFinalTranscript((prevTranscript) => prevTranscript + transcript + ' ');
-          } else {
-            newInterimTranscript += transcript;
-          }
+    recognition.onresult = (event) => {
+      let newInterimTranscript = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          setFinalTranscript(prevTranscript => prevTranscript + transcript + ' ');
+        } else {
+          newInterimTranscript += transcript;
         }
-        setInterimTranscript(newInterimTranscript);
-      };
+      }
+      setInterimTranscript(newInterimTranscript);
+    };
 
-      recognition.onend = () => {
-        if (isListening) {
-          recognitionRef.current!.start();
-        }
-      };
+    recognition.onend = () => {
+      if (isListening) {
+        recognition.start();
+      }
+    };
 
-      recognitionRef.current = recognition;
-    }
-
-    recognitionRef.current.start();
+    recognitionRef.current = recognition;
+    recognition.start();
     setIsListening(true);
   };
 
