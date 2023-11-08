@@ -37,7 +37,7 @@ const Summary: React.FC<SummaryProps> = ({ text }) => {
   useEffect(() => {
     const updateSummary = async () => {
       if (text.length && text.length % 50 === 0) {
-        let startIndex = text.length <= 200 ? 0 : text.length - 200;
+        let startIndex = text.length <= 5000 ? 0 : text.length - 5000;
         const prompt = text.slice(startIndex);
         const newSummary = await fetchSummary(prompt);
         setSummary(newSummary); // 現在の要約を新しい要約で更新
