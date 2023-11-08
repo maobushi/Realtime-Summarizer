@@ -8,7 +8,7 @@ import OpenAI from 'openai';
 const openai = new OpenAI({apiKey:process.env.OPENAI_API_KEY});
 
 // 名前付きエクスポートを使用してPOSTメソッドをエクスポート
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req) {
   const body = await req.json();
   const prompt = body.prompt;
   //console.log({body});
