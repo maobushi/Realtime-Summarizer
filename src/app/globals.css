@@ -16,6 +16,10 @@
   }
 }
 
+* {
+  background-color: black;
+  color: white;
+}
 /* styles/globals.css */
 h1 {
   font-size: 2rem;
@@ -24,6 +28,10 @@ h1 {
 }
 
 button {
+  color : white;
+  border: 1px solid #ccc;
+  background-color: gray;
+  border-radius: 5px;
   display: block;
   margin: 1rem auto;
   padding: 0.5rem 1rem;
@@ -31,10 +39,21 @@ button {
   cursor: pointer;
 }
 
+.rec{
+  background-color: red;
+}
+
 p {
   border: 1px solid #ccc;
+  border-radius: 20px;
   padding: 1rem;
   min-height: 200px;
   font-size: 1.5rem;
   padding: 10%;
 }
+
+/* 改行とスペースをそのまま表示 */
+.pre {
+  white-space: pre;
+}
+

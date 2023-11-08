@@ -62,7 +62,7 @@ const VoiceRecognition: React.FC<VoiceRecognitionProps> = ({ onTextChange }) => 
     <div>
       <h1>音声認識</h1>
       {isListening ? (
-        <button onClick={stopListening}>音声認識を停止</button>
+        <button className='rec' onClick={stopListening}>音声認識を停止</button>
       ) : (
         <button onClick={startListening}>音声認識を開始</button>
       )}
